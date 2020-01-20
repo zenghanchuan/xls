@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "顾客",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}

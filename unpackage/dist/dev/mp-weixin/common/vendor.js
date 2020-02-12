@@ -737,7 +737,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7065,7 +7065,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7086,14 +7086,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7169,7 +7169,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9661,7 +9661,25 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   var day = date.getDate();
   month = month > 9 ? month : '0' + month;;
   day = day > 9 ? day : '0' + day;
-  var nowTime = year + '-' + month + '-' + day;
+  var y = year,m = month,d = day;
+  if (day >= 30) {
+    d = '0' + 1;
+    if (month >= 12) {
+      m = '0' + 1;
+      y = year - 0 + 1;
+    } else if (month < 9) {
+      m = month - 0 + 1;
+      m = '0' + month;
+    } else {
+      m = month - 0 + 1;
+    }
+  } else if (day < 9) {
+    d = day - 0 + 1;
+    d = '0' + day;
+  } else {
+    d = day - 0 + 1;
+  }
+  var nowTime = y + '-' + m + '-' + d;
   if (day <= 7) {
     day = day - 7 + 30;
     if (month <= 1) {
@@ -9685,7 +9703,25 @@ var monthThis = function monthThis() {
   var day = date.getDate();
   month = month > 9 ? month : '0' + month;;
   day = day > 9 ? day : '0' + day;
-  var nowTime = year + '-' + month + '-' + day;
+  var y = year,m = month,d = day;
+  if (day >= 30) {
+    d = '0' + 1;
+    if (month >= 12) {
+      m = '0' + 1;
+      y = year - 0 + 1;
+    } else if (month < 9) {
+      m = month - 0 + 1;
+      m = '0' + month;
+    } else {
+      m = month - 0 + 1;
+    }
+  } else if (day < 9) {
+    d = day - 0 + 1;
+    d = '0' + day;
+  } else {
+    d = day - 0 + 1;
+  }
+  var nowTime = y + '-' + m + '-' + d;
   if (month <= 1) {
     month = month - 1 + 12;
     year = year - 1;
@@ -9706,7 +9742,25 @@ var quarterThis = function quarterThis() {
   var day = date.getDate();
   month = month > 9 ? month : '0' + month;;
   day = day > 9 ? day : '0' + day;
-  var nowTime = year + '-' + month + '-' + day;
+  var y = year,m = month,d = day;
+  if (day >= 30) {
+    d = '0' + 1;
+    if (month >= 12) {
+      m = '0' + 1;
+      y = year - 0 + 1;
+    } else if (month < 9) {
+      m = month - 0 + 1;
+      m = '0' + month;
+    } else {
+      m = month - 0 + 1;
+    }
+  } else if (day < 9) {
+    d = day - 0 + 1;
+    d = '0' + day;
+  } else {
+    d = day - 0 + 1;
+  }
+  var nowTime = y + '-' + m + '-' + d;
   if (month <= 3) {
     month = month - 3 + 12;
     year = year - 1;
@@ -9727,7 +9781,25 @@ var yearThis = function yearThis() {
   var day = date.getDate();
   month = month > 9 ? month : '0' + month;;
   day = day > 9 ? day : '0' + day;
-  var nowTime = year + '-' + month + '-' + day;
+  var y = year,m = month,d = day;
+  if (day >= 30) {
+    d = '0' + 1;
+    if (month >= 12) {
+      m = '0' + 1;
+      y = year - 0 + 1;
+    } else if (month < 9) {
+      m = month - 0 + 1;
+      m = '0' + month;
+    } else {
+      m = month - 0 + 1;
+    }
+  } else if (day < 9) {
+    d = day - 0 + 1;
+    d = '0' + day;
+  } else {
+    d = day - 0 + 1;
+  }
+  var nowTime = y + '-' + m + '-' + d;
   year = year - 1;
   var lastTime = year + '-' + month + '-' + day;
   var yearThis = lastTime + '~' + nowTime;
@@ -9746,6 +9818,8 @@ var dayAll = function dayAll() {
     if (month >= 12) {
       month = '0' + 1;
       year = year - 0 + 1;
+    } else if (m < 10) {
+      m = m - 0 + 1;
     }
   } else {day = day - 0 + 1;}
   var lastTime = year + '-' + month + '-' + day;
@@ -9812,6 +9886,30 @@ var fermitTime = function fermitTime(time) {
   }
   var postDate = year + '-' + mon + '-' + day + ' ' + hour + ':' + minutes + ':' + second;
   return postDate;
+};
+var singleDay = function singleDay(time) {
+  var y = time.slice(0, 4);
+  var m = time.slice(5, 7);
+  var d = time.slice(8, 10);
+  if (d >= 30) {
+    d = '0' + 1;
+    if (m >= 12) {
+      m = '0' + 1;
+      y = y - 0 + 1;
+    } else if (m < 9) {
+      m = m - 0 + 1;
+      m = '0' + m;
+    } else {
+      m = m - 0 + 1;
+    }
+  } else if (d < 9) {
+    d = d - 0 + 1;
+    d = '0' + d;
+  } else {
+    d = d - 0 + 1;
+  }
+  var endTime = y + '-' + m + '-' + d;
+  return endTime;
 };var _default =
 {
   weekLast: weekLast,
@@ -9822,7 +9920,8 @@ var fermitTime = function fermitTime(time) {
   GetDateStr: GetDateStr,
   GetMonthStr: GetMonthStr,
   getDate: getDate,
-  fermitTime: fermitTime };exports.default = _default;
+  fermitTime: fermitTime,
+  singleDay: singleDay };exports.default = _default;
 
 /***/ }),
 /* 22 */,

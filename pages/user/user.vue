@@ -160,6 +160,7 @@
 			},
 			/*点击选中顾客并跳转至编辑页*/
 			onchangePersonal:function(k){
+				getApp().globalData.clerkData = [];
 				getApp().globalData.userData = [];
 				getApp().globalData.userData = this.userInfo[k];
 				if(this.userInfo[k]){

@@ -5,13 +5,27 @@
 	},
 	"setting": {
 		"urlCheck": false,
+		"es6": true,
 		"postcss": true,
-		"es6": true
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
 	"appid": "wxb165ed7010509cba",
-	"projectname": "慧知客",
+	"projectname": "%E6%85%A7%E7%9F%A5%E5%AE%A2",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

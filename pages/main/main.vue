@@ -96,7 +96,7 @@
 				this.getServerDataT();
 				this.getServerDataS();
 				this.getServerDataA();
-				this.shopData();
+				// this.shopData();
 				this.regionData();
 				getApp().globalData.baseUrl = uni.getStorageSync('baseUrl');
 	  		},
@@ -106,6 +106,7 @@
 			  this.index1 = e.target.value;
 			  this.selectRegionid = this.areaArray[this.index1].id;
 			  this.areaName = this.objectArray1[this.index1];
+			  this.shopData();
 			  this.getServerData();
 			  this.getServerDataT();
 			  this.getServerDataS();
@@ -163,7 +164,7 @@
 			var that = this;
 			this.xlsAjax({
 				url:this.$store.state.url+'/'+uni.getStorageSync('baseUrl')+ '/api/shop/all-name',
-				data:{},
+				data:{area_id:that.selectRegionid},
 				method:"GET",
 				success:function(res){
 					if(res.statusCode == 200){
